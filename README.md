@@ -8,16 +8,18 @@ Role Variables
 --------------
 Default variables are
 
-# default yum repo and key for redhat based OS
+default yum repo and key for redhat based OS
 jenkins_yum_repo:
   url: "https://pkg.jenkins.io/redhat"
   key: "https://pkg.jenkins.io/redhat/jenkins.io-2023.key"
-# default java version for yum
+  
+default java version for yum
 java_yum_version: "java-17-openjdk"
 
-# default apt repo url for debian based OS
+default apt repo url for debian based OS
 jenkins_apt_repo_url: "https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key"
-# default java version for apt
+
+default java version for apt
 java_apt_version: "openjdk-17-jre"
 
 Example Playbook
