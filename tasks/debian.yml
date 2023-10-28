@@ -1,0 +1,35 @@
+---
+- name: Download Jenkins repo for apt
+  apt_key:
+    url: "{{ jenkins_apt_repo_url }}"
+    state: present
+  become: yes
+
+- name: Configure the apt repository
+  apt_repository: repo='deb http://pkg.jenkins.io/debian-stable binary/' state=present
+  become: yes
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    state: latest
+  become: yes
+
+- name: Install Java
+  apt:
+    name: "{{ java_apt_version }}"
+    state: present
+  become: yes
+
+- name: install Jenkins
+  apt:
+    name: jenkins
+    state: latest
+  become: yes
+
+- name: Enable and start Jenkins service (note it will start on port 8080 by default)
+  service:
+    name: jenkins
+    enabled: true
+    state: started
+  become: yes

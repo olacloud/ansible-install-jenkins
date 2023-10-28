@@ -1,0 +1,10 @@
+---
+- name: Install Jenkins using the tasks in debian.yml only if OS is of the Debian family (Debian , Ubuntu etc)
+  ansible.builtin.import_tasks:
+    file: debian.yml
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Install Jenkins using the tasks in redhat.yml only if the OS is of the RedHat family ( Redhat, Centos , Fedora, AlmaLinux, Rocky Linux , Oracle Linux etc)
+  ansible.builtin.import_tasks:
+    file: redhat.yml
+  when: ansible_facts['os_family'] == "RedHat"

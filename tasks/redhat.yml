@@ -1,0 +1,38 @@
+---
+- name: Install Jenkins Repository
+  yum_repository:
+    name: jenkins
+    state: present
+    description: Official Jenkins Yum Repo
+    baseurl: "{{ jenkins_yum_repo.url }}"
+    gpgkey: "{{ jenkins_yum_repo.key }}"
+    gpgcheck: yes
+    enabled: yes
+  become: yes
+- name: Install Java
+  yum :
+    name: "{{ java_yum_version }}"
+    update_cache: yes
+    state: present
+  become: yes
+- name: Install Jenkins
+  yum :
+    name: jenkins
+    update_cache: yes
+    state: present
+  become: yes
+- name: Enable and start Jenkins service (note it will start on port 8080 by default)
+  service:
+    name: jenkins
+    enabled: yes
+    state: started
+  become: yes
+- name: Open Firewall Port
+  firewalld:
+    zone: public
+    port: 8080/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+  become: yes
+
