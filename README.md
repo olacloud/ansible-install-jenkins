@@ -1,4 +1,4 @@
-Role
+Ansible role to install Jenkins
 =========
 
 Ansible role to install Jenkins on Debian/Redhat based OS. It checks the OS by using the ansible_facts['os_family'] fact and runs the tasks needed to install Java and Jenkins. It enables/starts the Jenkins service after installation.
